@@ -1,0 +1,8 @@
+trim string & get specific element
+>> foo=1:2:3:4:5 
+get last item → → echo ${foo##*:}
+get first item → → echo ${foo%%:*}
+get string AFTER match  → →  foo="tesora-mistral-api"  >> echo "${foo//tesora-}" → prints "mistral-api"
+get string BEFORE first match → → a='hello:world:of:tomorrow' >> echo "${a%%:*}" >> prints "hello" #Prints everything before the ":" sign
+remove double quotes in variable → →  variable='"something'  >> echo $variable | sed 's/\"//g'
+
