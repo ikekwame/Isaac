@@ -1,0 +1,5 @@
+# Preview of file content without extracting
+rpm -qlp filename.centos.noarch.rpm
+
+# Extract the rpm file
+rpm2cpio filename.centos.noarch.rpm | cpio -idmv

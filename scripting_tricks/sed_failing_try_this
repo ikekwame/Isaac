@@ -1,0 +1,2 @@
+find ./ -type f -exec sed -i '' -e"s:old_string:new_str:g" {} \;
+grep -rl "old_string" ./ | xargs sed -i '' 's/old_string/new_string/g'

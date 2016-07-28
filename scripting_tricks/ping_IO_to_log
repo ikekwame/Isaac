@@ -1,0 +1,1 @@
+./script_name 2>&1 | tee output.log
