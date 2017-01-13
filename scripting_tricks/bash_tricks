@@ -6,3 +6,6 @@ get string AFTER match  → →  foo="tesora-mistral-api"  >> echo "${foo//tesor
 get string BEFORE first match → → a='hello:world:of:tomorrow' >> echo "${a%%:*}" >> prints "hello" #Prints everything before the ":" sign
 remove double quotes in variable → →  variable='"something'  >> echo $variable | sed 's/\"//g'
 
+# Search config file and set protected-mode to 'no' if it exists.
+# Else if it does not exists, echo it into the config file
+sudo grep -q 'protected-mode' /etc/redis.conf && sed -i 's|protected-mode.*|protected-mode no|g' /etc/redis.conf || echo 'protected-mode no' >> /etc/redis.conf
