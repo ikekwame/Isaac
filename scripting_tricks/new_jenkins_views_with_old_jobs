@@ -1,0 +1,30 @@
+Use these instructions to copy over several jobs for new release.
+For example, the instructions below can be used to copy over all EE-1.8 test jobs for EE-1.9.
+1. ssh to jenkins master.
+2. Run: sudo su - jenkins
+3. cat << EOF > ~/create_test_jobs.sh
+!/bin/bash
+ 
+copy_from="EE-1.8"
+copy_to="EE-1.9"
+ 
+echo "copy_from: $copy_from"
+echo "copy_to: $copy_to"
+for from_directory in `ls jobs | grep test | grep $copy_from | grep -v pentest`; do
+    echo "from_directory: $from_directory"
+    to_directory=$(echo $from_directory | sed -e s/"$copy_from"/"$copy_to"/)
+    echo "to_directory: $to_directory"
+    echo "Copying base_job directory to jobs/$to_directory"
+    cp -R base_job jobs/$to_directory
+    echo "Copying jobs/$from_directory/config.xml to jobs/$to_directory/config.xml"
+    \cp jobs/$from_directory/config.xml jobs/$to_directory/config.xml
+    echo "Change $copy_from to $copy_to in jobs/$to_directory/config.xml"
+    sed -i s/"$copy_from"/"$copy_to"/g jobs/$to_directory/config.xml
+done
+EOF
+4. Change copy_from to your "copy from release". In this case, it is set to EE-1.8
+5. Change copy_to to your "copy to release". In this case, it will be EE-1.9. So, all EE-1.8 jobs will be copied over for EE-1.9 jobs.
+6. WARNING: Make sure everything is correct, before running this script. This script WILL create a lot of jobs, so be careful!
+7. Once everything looks correct, run './create_test_jobs.sh'
+8. Check you have multiple new jobs: 'ls -l jobs/*EE-1.9*'
+9. Reload the configuration: Jenkins UI → Manage Jenkins → 'Reload Configuration From Disk'

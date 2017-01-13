@@ -1,0 +1,25 @@
+Option #1: 
+1. On your mac, run 'brew install sshuttle'
+2. Create new file ~/.ssh/config
+ 
+Host <server_alias>
+HostName <IP>
+User iduodu
+IdentityFile /Users/iduodu/.ssh/id_rsa
+3. sshuttle -r gw2 10.240.0.0/16
+
+Option #2: (taken from Stupid SSH Tricks)
+1. git clone https://github.com/pthrasher/sshuttle/
+2. cd sshuttle
+3. git checkout 9461a53b5198d6f19bd6102c0086af7ef1d4957d
+4. cd src
+5. ./sshuttle -r gw2 10.240.0.0/16
+ 
+Option #3:
+1. Install shuttle on your mac
+              i. Run: git clone https://github.com/sshuttle/sshuttle.git 
+               ii. cd sshuttle
+              iii. Run: sudo ./setup.py install
+              iv. The application is installed at /usr/local/bin
+2. Open a new terminal and run:  sudo sshuttle -r gw2 10.240.0.0/16
+3. To connect to your destination server, run:    sudo ssh -i ~/.ssh/<pem_key> ubuntu@<theip>
