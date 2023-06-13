@@ -1,2 +1,3 @@
 find ./ -type f -exec sed -i '' -e"s:old_string:new_str:g" {} \;
 grep -rl "old_string" ./ | xargs sed -i '' 's/old_string/new_string/g'
+find ./ \( -type d -name rundeck-data -prune \) -o -type f -print0 | xargs -0 sed -i 's:/data/:/rundeck-data/data/:g'
