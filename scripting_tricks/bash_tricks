@@ -9,3 +9,13 @@ remove double quotes in variable → →  variable='"something'  >> echo $variab
 # Search config file and set protected-mode to 'no' if it exists.
 # Else if it does not exists, echo it into the config file
 sudo grep -q 'protected-mode' /etc/redis.conf && sed -i 's|protected-mode.*|protected-mode no|g' /etc/redis.conf || echo 'protected-mode no' >> /etc/redis.conf
+
+
+#stdout & stderr
+command3 2>&1 >/tmp/log.txt
+
+#stdout
+command2 >/tmp/log.txt
+
+#stderr
+some_cmd 2> /tmp/log.txt
