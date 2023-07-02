@@ -1,2 +1,0 @@
-Check with folders/files uses most disk space on your manchine
-From any directory, run ncdu     (this runs recursively from the current dir. brew install ncdu  to get this tool)
